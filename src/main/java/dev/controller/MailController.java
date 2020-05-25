@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class MailController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> sendFeedback(@RequestBody User user, BindingResult bindingResult)
+	public ResponseEntity<?> sendFeedback(@RequestBody @Validated User user, BindingResult bindingResult)
 			throws ValidationException {
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException("Feedback is not valid");

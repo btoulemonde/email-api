@@ -1,14 +1,17 @@
 package dev.entite;
 
+import org.springframework.lang.NonNull;
+
 public class User {
+	@NonNull
 	private String nom;
-
+	@NonNull
 	private String prenom;
-
+	@NonNull
 	private String email;
 
 	private String telephone;
-
+	@NonNull
 	private String message;
 
 	public User() {
