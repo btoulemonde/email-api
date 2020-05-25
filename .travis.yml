@@ -6,4 +6,3 @@ deploy:
   api-key:
     secure: $HEROKU_API_KEY
   app: email22
-  dist: trusty
