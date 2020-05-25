@@ -55,8 +55,8 @@ public class MailController {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom(user.getEmail());
 		mailMessage.setTo("contact.maitrevogt@gmail.com");
-		mailMessage.setSubject(
-				"message de la part de: " + user.getNom() + " " + user.getPrenom() + " - " + user.getTelephone());
+		mailMessage.setSubject("message de la part de: " + user.getNom() + " " + user.getPrenom() + " - "
+				+ user.getEmail() + " - " + user.getTelephone());
 		mailMessage.setText(user.getMessage());
 
 		// Send mail
