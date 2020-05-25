@@ -48,7 +48,7 @@ public class MailController {
 																						// Factory
 																						// Class
 		prop.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
-		prop.put("mail.smtp.port", "465"); // SMTP Por
+		prop.put("mail.smtp.port", "465"); // SMTP Port
 		prop.put("mail.debug", "true");
 
 		// Create an email instance
