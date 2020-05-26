@@ -4,6 +4,8 @@ import java.util.Properties;
 
 import javax.xml.bind.ValidationException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -28,7 +30,7 @@ public class MailController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> sendFeedback(@RequestBody @Validated User user, BindingResult bindingResult)
+	public ResponseEntity<?> sendFeedback(@RequestBody @Validated User user, BindingResult bindingResult)
 			throws ValidationException {
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException("Feedback is not valid");
@@ -61,6 +63,6 @@ public class MailController {
 
 		// Send mail
 		mailSender.send(mailMessage);
-		return ResponseEntity.ok("ok");
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.ALL).body("ok");
 	}
 }
