@@ -5,7 +5,6 @@ import java.util.Properties;
 import javax.xml.bind.ValidationException;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -63,6 +62,6 @@ public class MailController {
 
 		// Send mail
 		mailSender.send(mailMessage);
-		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.ALL).body("ok");
+		return ResponseEntity.status(HttpStatus.OK).body("ok");
 	}
 }
