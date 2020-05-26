@@ -62,6 +62,6 @@ public class MailController {
 
 		// Send mail
 		mailSender.send(mailMessage);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("message envoyé");
+		return ResponseEntity.status(HttpStatus.OK).body("message envoyé");
 	}
 }
