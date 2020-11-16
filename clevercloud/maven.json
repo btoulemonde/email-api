@@ -1,7 +1,7 @@
 {
   "build": {
     "type": "maven",
-    "goal": "clean package -Pprod -Dmaven.test.skip=true"
+    "goal": "clean package  -Dmaven.test.skip=true"
   },
   "deploy": {
     "jarName": "target/envoi-email-0.0.1-SNAPSHOT.jar"
