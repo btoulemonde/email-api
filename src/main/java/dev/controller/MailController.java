@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.xml.bind.ValidationException;
 
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.BindingResult;
@@ -52,15 +53,19 @@ public class MailController {
 		prop.put("mail.smtp.starttls.enable", "true");
 
 		// Create an email instance
-		SimpleMailMessage mailMessage = new SimpleMailMessage();
-		mailMessage.setFrom(user.getEmail());
-		mailMessage.setTo("contact.maitrevogt@gmail.com");
-		mailMessage.setSubject("message de la part de: " + user.getNom() + " " + user.getPrenom() + " - "
-				+ user.getEmail() + " - " + user.getTelephone());
-		mailMessage.setText(user.getMessage());
+		try {
+			SimpleMailMessage mailMessage = new SimpleMailMessage();
+			mailMessage.setFrom(user.getEmail());
+			mailMessage.setTo("contact.maitrevogt@gmail.com");
+			mailMessage.setSubject("message de la part de: " + user.getNom() + " " + user.getPrenom() + " - "
+					+ user.getEmail() + " - " + user.getTelephone());
+			mailMessage.setText(user.getMessage());
 
-		// Send mail
-		mailSender.send(mailMessage);
+			// Send mail
+			mailSender.send(mailMessage);
+		} catch (MailException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 }
