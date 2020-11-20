@@ -53,6 +53,7 @@ public class MailController {
 		prop.put("mail.smtp.port", "465"); // SMTP Port
 		prop.put("mail.debug", "true");
 		prop.put("mail.smtp.starttls.enable", "true");
+		prop.put("mail.smtp.starttls.port", "587");
 
 		// Create an email instance
 		try {
