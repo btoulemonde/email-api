@@ -65,7 +65,7 @@ public class MailController {
 
 			// Send mail
 			mailSender.send(mailMessage);
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Message envoyé :)");
+			return ResponseEntity.status(HttpStatus.CREATED).body("Message envoyé :)");
 		} catch (MailException e) {
 			System.out.println(e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
