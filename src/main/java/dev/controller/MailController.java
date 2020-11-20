@@ -49,6 +49,7 @@ public class MailController {
 		prop.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
 		prop.put("mail.smtp.port", "465"); // SMTP Port
 		prop.put("mail.debug", "true");
+		prop.put("mail.smtp.starttls.enable", "true");
 
 		// Create an email instance
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
