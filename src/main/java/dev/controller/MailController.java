@@ -4,9 +4,6 @@ import java.util.Properties;
 
 import javax.xml.bind.ValidationException;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.BindingResult;
@@ -30,7 +27,7 @@ public class MailController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> sendFeedback(@RequestBody @Validated User user, BindingResult bindingResult)
+	public void sendFeedback(@RequestBody @Validated User user, BindingResult bindingResult)
 			throws ValidationException {
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException("Feedback is not valid");
@@ -53,24 +50,18 @@ public class MailController {
 		prop.put("mail.smtp.port", "465"); // SMTP Port
 		prop.put("mail.debug", "true");
 		prop.put("mail.smtp.starttls.enable", "true");
-		prop.put("mail.smtp.starttls.port", "587");
 
 		// Create an email instance
-		try {
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			mailMessage.setFrom(user.getEmail());
-			mailMessage.setTo("contact.maitrevogt@gmail.com");
-			mailMessage.setSubject("message de la part de: " + user.getNom() + " " + user.getPrenom() + " - "
-					+ user.getEmail() + " - " + user.getTelephone());
-			mailMessage.setText(user.getMessage());
 
-			// Send mail
-			mailSender.send(mailMessage);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Message envoyé :)");
-		} catch (MailException e) {
-			System.out.println(e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		mailMessage.setFrom(user.getEmail());
+		mailMessage.setTo("contact.maitrevogt@gmail.com");
+		mailMessage.setSubject("message de la part de: " + user.getNom() + " " + user.getPrenom() + " - "
+				+ user.getEmail() + " - " + user.getTelephone());
+		mailMessage.setText(user.getMessage());
+
+		// Send mail
+		mailSender.send(mailMessage);
 
 	}
 }
